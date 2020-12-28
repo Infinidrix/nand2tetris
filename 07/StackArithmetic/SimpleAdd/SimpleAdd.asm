@@ -1,0 +1,36 @@
+
+// pushing constant 7
+
+        @7
+        D=A
+        
+        @SP
+        M=M+1
+        A=M-1
+        M=D
+        
+        
+// pushing constant 8
+
+        @8
+        D=A
+        
+        @SP
+        M=M+1
+        A=M-1
+        M=D
+        
+        
+// adding
+        @SP
+        M=M-1
+        A=M
+        D=M
+        @SP
+        A=M-1
+        M=M+D
+        
+        (FVLHOKMAJC)
+        @FVLHOKMAJC
+        0;JEQ
+        

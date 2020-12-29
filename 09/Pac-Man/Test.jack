@@ -1,0 +1,40 @@
+class Test {
+   field Model player; // the player model
+   field int xDirection, yDirection; // the square's current direction
+
+   /** Constructs a new Square Game. */
+   constructor Test new() {
+      // Creates a 20 by 20 pixels model and positions it at the top-left
+      // of the screen.
+      let player = Model.new(0, 0, 15, 2);
+      let xDirection = 0;  // initial state is no movement
+      let yDirection = 0;
+      return this;
+   }
+
+   /** Disposes this game. */
+   method void dispose() {
+      do player.dispose();
+      do Memory.deAlloc(this);
+      return;
+   }
+
+    method void run() {
+        var int key;
+        let key = 0;
+        // while exit key (q) not pressed
+        while (~(key = 81)){
+            let xDirection = 0;
+            let yDirection = 0;
+            let key = Keyboard.keyPressed();
+
+            if (key = 130) { let xDirection = -1; } // left arrow
+            if (key = 131) { let yDirection = -1; } // up arrow 
+            if (key = 132) { let xDirection = 1; } // right arrow
+            if (key = 133) { let yDirection = 1; } // down arrow
+
+            do player.move(xDirection, yDirection);
+        }
+        return;
+    }
+}

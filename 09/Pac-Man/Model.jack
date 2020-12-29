@@ -1,0 +1,111 @@
+/** Implements the movement of both the 
+    player's and the enemy ghosts' avatars
+*/
+
+class Model{
+    field int x, y; // model's top left corner
+    field int size; // the side length of model square
+    field int step; // the length that the model can move in one turn 
+
+    constructor Model new(int Ax, int Ay, int Asize, int Astep){
+        let x = Ax;
+        let y = Ay;
+        let size = Asize;
+        let step = Astep;
+        do draw();
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    /** draws the model for the first time alone, next calls are to redraw */
+    method void draw() {
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x, y, x + size, y + size);
+        return;
+    }
+
+    /** draws the new location of the model effiecently */ 
+    method void redraw(int xDirection, int yDirection){
+        var int newX, newY;
+        if (withinBounds(x + xDirection, y + yDirection)){
+            if (~(xDirection = 0)){
+                let newX = x + xDirection - 1;
+                let newY = y + size;
+            } else {
+                let newY = y + yDirection - 1;
+                let newX = x + size;
+            }
+            do Screen.setColor(false);
+            do Screen.drawRectangle(x, y, newX, newY);
+            do Screen.setColor(true);
+            do Screen.drawRectangle(x + size, y + size, newX + size, newY + size);
+        }
+        return;
+    }
+
+    /** Moves the square up by 2 pixels. */
+   method void moveUp() {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, (y + size) - step + 1, x + size, y + size);
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x, y - step, x + size, y);
+        let y = y - step;
+      return;
+   }
+
+   /** Moves the square down by 2 pixels. */
+   method void moveDown() {
+         do Screen.setColor(false);
+         do Screen.drawRectangle(x, y, x + size, y + step - 1);
+         do Screen.setColor(true);
+         do Screen.drawRectangle(x, (y + size), x + size, y + size + step);
+         let y = y + step;
+      return;
+   }
+
+   /** Moves the square left by 2 pixels. */
+   method void moveLeft() {
+         do Screen.setColor(false);
+         do Screen.drawRectangle((x + size) - step + 1, y, x + size, y + size);
+         do Screen.setColor(true);
+         do Screen.drawRectangle(x - step, y, x, y + size);
+         let x = x - step;
+      return;
+   }
+
+   /** Moves the square right by 2 pixels. */
+   method void moveRight() {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, x + step - 1, y + size);
+        do Screen.setColor(true);
+        do Screen.drawRectangle((x + size) - 1, y, x + size + step, y + size);
+        let x = x + step;
+      return;
+   }
+
+    /** checks if the next move is within bounds and valid 
+        for now hardcodes the screensize*/
+    method boolean withinBounds(int newX, int newY){
+        if ((Math.min(newY, 0) = 0) & (Math.min(newX, 0) = 0) & 
+        (Math.max(newY + size, 255) = 255) & (Math.max(newX + size, 511) = 511)){
+            return true;
+        }
+        return false;
+    }
+
+    /** moves the model in a specific direction */
+    method void move(int xDir, int yDir){
+        if (withinBounds(x + (xDir * step), y + (yDir * step))){
+            if (xDir = 1){ do moveRight(); }
+            if (xDir = -1) { do moveLeft(); }
+            if (yDir = 1) { do moveDown(); }
+            if (yDir = -1) { do moveUp(); }
+        }
+        do Sys.wait(15);
+        return;
+    }
+}

@@ -6,7 +6,7 @@ class Test {
    constructor Test new() {
       // Creates a 20 by 20 pixels model and positions it at the top-left
       // of the screen.
-      let player = Model.new(0, 0, 15, 2);
+      let player = Model.new(0, 0, 8, 2);
       let xDirection = 0;  // initial state is no movement
       let yDirection = 0;
       return this;
@@ -24,14 +24,12 @@ class Test {
         let key = 0;
         // while exit key (q) not pressed
         while (~(key = 81)){
-            let xDirection = 0;
-            let yDirection = 0;
             let key = Keyboard.keyPressed();
 
-            if (key = 130) { let xDirection = -1; } // left arrow
-            if (key = 131) { let yDirection = -1; } // up arrow 
-            if (key = 132) { let xDirection = 1; } // right arrow
-            if (key = 133) { let yDirection = 1; } // down arrow
+            if (key = 130) { let xDirection = -1; let yDirection = 0; } // left arrow
+            if (key = 131) { let yDirection = -1; let xDirection = 0; } // up arrow 
+            if (key = 132) { let xDirection = 1; let yDirection = 0; } // right arrow
+            if (key = 133) { let yDirection = 1; let xDirection = 0; } // down arrow
 
             do player.move(xDirection, yDirection);
         }

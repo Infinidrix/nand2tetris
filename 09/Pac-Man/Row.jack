@@ -1,0 +1,46 @@
+class Row{
+    field Array rowVals;
+    field int row, col;
+    /** creates new row */
+    constructor Row new(int rowNum, int cols){
+        var int i;
+        let row = rowNum;
+        let col = cols;
+        let rowVals = Array.new(col);
+        let i = 0;
+        while (i < col){
+            if ((rowNum = 0) | (rowNum = 31) | (i = 0) | (i = 31)){
+                let rowVals[i] = Cell.new(true, true, 0);
+            }
+            else{
+                let rowVals[i] = Cell.new(false, true, 0);
+            }
+            let i = i + 1;
+        } 
+        return this;
+    }
+
+    /** get index value */
+    method Cell get(int index){
+        return rowVals[index];
+    }
+
+    /** set index value - better to get value and modify refence than use this */
+    method void set(int index, Cell value){
+        let rowVals[index] = value;
+        return;
+    }
+
+    method void dispose(){
+        var Cell currCell;
+        var int i;
+        let i = 0;
+        while (i < col){
+            let currCell = rowVals[i];
+            do currCell.dispose();
+            let i = i + 1;
+        }
+        do Memory.dealloc(this);
+        return;
+    }
+}

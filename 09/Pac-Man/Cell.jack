@@ -1,0 +1,56 @@
+class Cell{
+    field boolean hasWall, hasPellet; // true if cell is occupied by wall
+    field int occupation; // 0 if unoccupied 1 if player 2 if enemy
+
+    constructor Cell new(boolean AhasWall, boolean AhasPellet, int Aoccupation){
+        let hasWall = AhasWall;
+        let hasPellet = AhasPellet;
+        let occupation = Aoccupation; 
+        return this;
+    }
+
+    method boolean hasWall(){
+        return hasWall;
+    }
+
+    method boolean hasEnemy(){
+        return (occupation = 2);
+    }
+
+    method boolean hasPlayer(){
+        return (occupation = 1);
+    }
+
+    method boolean hasPellet(){
+        return hasPellet;
+    }
+
+    method void setPellet(boolean AhasPellet){
+        let hasPellet = AhasPellet;
+        return;
+    }
+
+    method void setEnemy(){
+        let occupation = 2;
+        return;
+    }
+
+    method void setPlayer(){
+        let occupation = 1;
+        return;
+    }
+
+    method void setEmpty(){
+        let occupation = 0;
+        return;
+    }
+    method void setOccupation(int Aoccupation){
+        let occupation = Aoccupation;
+        return;
+    }
+
+    method void dispose(){
+        do Memory.dealloc(this);
+        return;
+    }
+}

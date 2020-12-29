@@ -1,0 +1,109 @@
+class Map{
+    field Array rows;
+    field int pellets; // number of pellets remaining
+    field int row, col; // number of rows and cols
+    field int hOffset, vOffset;
+
+    constructor Map new(int rowLength, int colLength, int AhOffset, int AvOffset){
+        var int i;
+        let hOffset = AhOffset;
+        let vOffset = AvOffset;
+        let row = rowLength;
+        let col = colLength;
+        let pellets = rowLength * colLength;
+        let rows = Array.new(rowLength);
+        let i = 0;
+        while (i < rowLength){
+            let rows[i] = Row.new(i, colLength);
+            let i = i + 1;
+        }
+        return this;
+    }
+
+    /** Draws the map on the screen, while respecting the horizontal
+    and vertical offsets */
+    method void drawMap(){
+        var int rowI, colI;
+        var Cell cell;
+        let rowI = 0;
+        do Screen.setColor(true);
+        while(rowI < row){
+            let colI = 0;
+            while(colI < col){
+                let cell = getCell(rowI, colI);
+                if (cell.hasWall()){
+                    do Screen.drawRectangle((rowI * 8) + hOffset + 1, (colI * 8) + vOffset + 1, (rowI * 8) + hOffset + 8 - 1, (colI * 8) + vOffset + 8 - 1);
+                }
+                if (cell.hasPellet()){
+                    do Screen.drawPixel((rowI * 8) + hOffset + 4, (colI * 8) + vOffset + 4);
+                }
+                let colI = colI + 1; 
+            }
+            let rowI = rowI + 1;
+        }
+        return;
+    }
+
+    method boolean canMove(int rowNum, int colNum){
+        var Cell currCell;
+        if ((rowNum < 0) | (rowNum > (row - 1)) | 
+            (colNum < 0) | (colNum > (col - 1)) ){
+                return false;
+            }
+        let currCell = getCell(rowNum, colNum);
+        return ~(currCell.hasWall());
+    }
+
+    /** returns the game state after making move
+    [gameWinner, row, col] 
+    - gameWinner = 0 if not over
+    - gameWinner = 1 if player wins
+    - gameWinner = 2 if player loses */
+    method Array movePlayer(int row, int col){
+        var Cell cell;
+        var Array result;
+        let result = Array.new(300);
+        let result[0] = 0;
+        let result[1] = row;
+        let result[2] = col;
+
+        let cell = getCell(row, col);
+        if (cell.hasEnemy()){
+            let result[0] = 2;
+            return result;
+        }
+        if (cell.hasPellet()){
+            do cell.setPellet(false);
+            do Screen.setColor(false);
+            do Screen.drawPixel((row * 8) + hOffset + 4, (col * 8) + vOffset + 4);
+            let pellets = pellets - 1;
+            if (pellets = 0){
+                let result[0] = 1;
+                return result;
+            }
+        }
+        do cell.setPlayer();
+        return result;
+    }
+
+    method Cell getCell(int row, int col){
+        var Row currRow;
+        var Cell currCell;
+        let currRow = rows[row];
+        let currCell = currRow.get(col);
+        return currCell;
+    }
+
+    method void dispose(){
+        var int i;
+        var Row currRow;
+        let i = 0;
+        while (i < row){
+            let currRow = rows[i];
+            do currRow.dispose();
+            let i = i + 1;
+        }
+        do Memory.dealloc(this);
+        return;
+    }
+}

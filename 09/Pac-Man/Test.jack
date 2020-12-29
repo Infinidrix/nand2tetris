@@ -1,12 +1,17 @@
 class Test {
    field Model player; // the player model
+   field Map map; // the game map
+   field int hOffset; // the horizontal offset of the map 
    field int xDirection, yDirection; // the square's current direction
 
    /** Constructs a new Square Game. */
    constructor Test new() {
-      // Creates a 20 by 20 pixels model and positions it at the top-left
-      // of the screen.
-      let player = Model.new(0, 0, 8, 2);
+       let hOffset = 255; 
+      // Creates a 8 by 8 pixels model and positions it at the top-left
+      // of the game.
+      let player = Model.new(8, 8, 8, 4, hOffset);
+      let map = Map.new(32, 32, hOffset, 0);
+      do map.drawMap(); // draw map with hoffset and voffset
       let xDirection = 0;  // initial state is no movement
       let yDirection = 0;
       return this;
@@ -15,24 +20,45 @@ class Test {
    /** Disposes this game. */
    method void dispose() {
       do player.dispose();
+      do map.dispose();
       do Memory.deAlloc(this);
       return;
    }
 
+    /** the main game loop */
     method void run() {
-        var int key;
+        var int key, tempKey, main_key;
+        var int gameState;
+        let gameState = 0;
         let key = 0;
+        let main_key = 0;
+        let tempKey = 0;
         // while exit key (q) not pressed
-        while (~(key = 81)){
+        while ((~(key = 81)) | (~(gameState = 0))){
             let key = Keyboard.keyPressed();
+            if (player.isMovable()){ // changes dir only if it is in the grid box
+                if (key = 0){
+                    let main_key = tempKey;
+                } else { let main_key = key; }
+                let tempKey = main_key;
+            } else{
+                if (~(key = 0)){
+                    let tempKey = key;
+                }
+            }
+            if (main_key = 130) { let xDirection = -1; let yDirection = 0; } // left arrow
+            if (main_key = 131) { let yDirection = -1; let xDirection = 0; } // up arrow 
+            if (main_key = 132) { let xDirection = 1; let yDirection = 0; } // right arrow
+            if (main_key = 133) { let yDirection = 1; let xDirection = 0; } // down arrow
 
-            if (key = 130) { let xDirection = -1; let yDirection = 0; } // left arrow
-            if (key = 131) { let yDirection = -1; let xDirection = 0; } // up arrow 
-            if (key = 132) { let xDirection = 1; let yDirection = 0; } // right arrow
-            if (key = 133) { let yDirection = 1; let xDirection = 0; } // down arrow
-
-            do player.move(xDirection, yDirection);
+            let gameState = player.move(xDirection, yDirection, map);
         }
+        if (gameState = 1){
+            do Output.printString("You have won!!");
+        }else {
+            do Output.printString("Better luck next time!!");
+        }
+        do dispose();
         return;
     }
 }

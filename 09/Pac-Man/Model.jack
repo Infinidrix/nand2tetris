@@ -3,12 +3,14 @@
 */
 
 class Model{
+    field int hOffset; // the horizontal offset of the game
     field int x, y; // model's top left corner
     field int size; // the side length of model square
     field int step; // the length that the model can move in one turn 
 
-    constructor Model new(int Ax, int Ay, int Asize, int Astep){
-        let x = Ax;
+    constructor Model new(int Ax, int Ay, int Asize, int Astep, int AhOffset){
+        let hOffset = AhOffset;
+        let x = Ax + hOffset;
         let y = Ay;
         let size = Asize;
         let step = Astep;
@@ -90,22 +92,69 @@ class Model{
     /** checks if the next move is within bounds and valid 
         for now hardcodes the screensize*/
     method boolean withinBounds(int newX, int newY){
-        if ((Math.min(newY, 0) = 0) & (Math.min(newX, 0) = 0) & 
+        if ((Math.min(newY, 0) = 0) & (Math.min(newX, hOffset) = hOffset) & 
         (Math.max(newY + size, 255) = 255) & (Math.max(newX + size, 511) = 511)){
             return true;
         }
         return false;
     }
 
+    /** checks if we can move to the next block in the map */
+    method boolean canMove(int xDir, int yDir, Map map){
+        var int newX, newY;
+        if (~(isMovable())){
+            return true;
+        }
+        let newX = ((x - hOffset) / 8) + xDir;
+        let newY = (y / 8) + yDir;
+        return map.canMove(newX, newY);
+    }
+
     /** moves the model in a specific direction */
-    method void move(int xDir, int yDir){
-        if (withinBounds(x + (xDir * step), y + (yDir * step))){
-            if (xDir = 1){ do moveRight(); }
+    method int move(int xDir, int yDir, Map map){
+        var Array result;
+        var int returnValue;
+        let returnValue = 0;
+        if (isMovable()){
+            let result = map.movePlayer((x - hOffset) / 8, y/8);
+            if (~(result[0] = 0)){
+                do Sys.wait(30);
+                let returnValue = result[0];
+                do Memory.deAlloc(result);
+                return returnValue;
+            }
+            let x = (result[1] * 8) + hOffset;
+            let y = result[2] * 8;
+            do Memory.deAlloc(result);
+        }
+        if ((withinBounds(x + (xDir * step), y + (yDir * step))) &
+            (canMove(xDir, yDir, map))){
+            if (xDir = 1) { do moveRight(); }
             if (xDir = -1) { do moveLeft(); }
             if (yDir = 1) { do moveDown(); }
             if (yDir = -1) { do moveUp(); }
         }
-        do Sys.wait(15);
-        return;
+        do Sys.wait(30);
+        return returnValue;
+    }
+
+    method int getX(){
+        return x;
+    }
+
+    method int getY(){
+        return y;
+    }
+
+    method int getXRemainder(){
+        return (x - hOffset) - (8 * ((x - hOffset) / 8));
+    }
+
+    method int getYRemainder(){
+        return y - (8 * (y / 8));
+    }
+    method boolean isMovable(){
+        return ((getXRemainder() = 0) &
+                (getYRemainder() = 0));
     }
 }

@@ -1,15 +1,19 @@
 function Model.new 0
-push constant 4
+push constant 5
 call Memory.alloc 1
 pop pointer 0
-push argument 0
+push argument 4
 pop this 0
-push argument 1
+push argument 0
+push this 0
+add
 pop this 1
-push argument 2
+push argument 1
 pop this 2
-push argument 3
+push argument 2
 pop this 3
+push argument 3
+pop this 4
 push pointer 0
 call Model.draw 1
 pop temp 0
@@ -30,13 +34,13 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 0
 push this 1
-push this 0
 push this 2
+push this 1
+push this 3
 add
-push this 1
 push this 2
+push this 3
 add
 call Screen.drawRectangle 4
 pop temp 0
@@ -46,10 +50,10 @@ function Model.redraw 2
 push argument 0
 pop pointer 0
 push pointer 0
-push this 0
+push this 1
 push argument 1
 add
-push this 1
+push this 2
 push argument 2
 add
 call Model.withinBounds 3
@@ -63,34 +67,34 @@ not
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 0
+push this 1
 push argument 1
 add
 push constant 1
 sub
 pop local 0
-push this 1
 push this 2
+push this 3
 add
 pop local 1
 goto IF_END1
 label IF_FALSE1
-push this 1
+push this 2
 push argument 2
 add
 push constant 1
 sub
 pop local 1
-push this 0
-push this 2
+push this 1
+push this 3
 add
 pop local 0
 label IF_END1
 push constant 0
 call Screen.setColor 1
 pop temp 0
-push this 0
 push this 1
+push this 2
 push local 0
 push local 1
 call Screen.drawRectangle 4
@@ -99,17 +103,17 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 0
-push this 2
-add
 push this 1
+push this 3
+add
 push this 2
+push this 3
 add
 push local 0
-push this 2
+push this 3
 add
 push local 1
-push this 2
+push this 3
 add
 call Screen.drawRectangle 4
 pop temp 0
@@ -122,19 +126,19 @@ pop pointer 0
 push constant 0
 call Screen.setColor 1
 pop temp 0
-push this 0
 push this 1
 push this 2
-add
 push this 3
+add
+push this 4
 sub
 push constant 1
 add
-push this 0
-push this 2
-add
 push this 1
+push this 3
+add
 push this 2
+push this 3
 add
 call Screen.drawRectangle 4
 pop temp 0
@@ -142,20 +146,20 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 0
+push this 1
+push this 2
+push this 4
+sub
 push this 1
 push this 3
-sub
-push this 0
-push this 2
 add
-push this 1
+push this 2
 call Screen.drawRectangle 4
 pop temp 0
-push this 1
-push this 3
+push this 2
+push this 4
 sub
-pop this 1
+pop this 2
 push constant 0
 return
 function Model.moveDown 0
@@ -164,13 +168,13 @@ pop pointer 0
 push constant 0
 call Screen.setColor 1
 pop temp 0
-push this 0
 push this 1
-push this 0
 push this 2
-add
 push this 1
 push this 3
+add
+push this 2
+push this 4
 add
 push constant 1
 sub
@@ -180,24 +184,24 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 0
 push this 1
 push this 2
-add
-push this 0
-push this 2
-add
-push this 1
-push this 2
-add
 push this 3
+add
+push this 1
+push this 3
+add
+push this 2
+push this 3
+add
+push this 4
 add
 call Screen.drawRectangle 4
 pop temp 0
-push this 1
-push this 3
+push this 2
+push this 4
 add
-pop this 1
+pop this 2
 push constant 0
 return
 function Model.moveLeft 0
@@ -206,19 +210,19 @@ pop pointer 0
 push constant 0
 call Screen.setColor 1
 pop temp 0
-push this 0
-push this 2
-add
+push this 1
 push this 3
+add
+push this 4
 sub
 push constant 1
 add
-push this 1
-push this 0
 push this 2
+push this 1
+push this 3
 add
-push this 1
 push this 2
+push this 3
 add
 call Screen.drawRectangle 4
 pop temp 0
@@ -226,20 +230,20 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 0
-push this 3
-sub
 push this 1
-push this 0
+push this 4
+sub
+push this 2
 push this 1
 push this 2
+push this 3
 add
 call Screen.drawRectangle 4
 pop temp 0
-push this 0
-push this 3
+push this 1
+push this 4
 sub
-pop this 0
+pop this 1
 push constant 0
 return
 function Model.moveRight 0
@@ -248,15 +252,15 @@ pop pointer 0
 push constant 0
 call Screen.setColor 1
 pop temp 0
-push this 0
 push this 1
-push this 0
-push this 3
+push this 2
+push this 1
+push this 4
 add
 push constant 1
 sub
-push this 1
 push this 2
+push this 3
 add
 call Screen.drawRectangle 4
 pop temp 0
@@ -264,26 +268,26 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 0
-push this 2
+push this 1
+push this 3
 add
 push constant 1
 sub
-push this 1
-push this 0
 push this 2
-add
+push this 1
 push this 3
 add
-push this 1
+push this 4
+add
 push this 2
+push this 3
 add
 call Screen.drawRectangle 4
 pop temp 0
-push this 0
-push this 3
+push this 1
+push this 4
 add
-pop this 0
+pop this 1
 push constant 0
 return
 function Model.withinBounds 0
@@ -295,13 +299,13 @@ call Math.min 2
 push constant 0
 eq
 push argument 1
-push constant 0
+push this 0
 call Math.min 2
-push constant 0
+push this 0
 eq
 and
 push argument 2
-push this 2
+push this 3
 add
 push constant 255
 call Math.max 2
@@ -309,7 +313,7 @@ push constant 255
 eq
 and
 push argument 1
-push this 2
+push this 3
 add
 push constant 511
 call Math.max 2
@@ -325,56 +329,139 @@ return
 label IF_FALSE0
 push constant 0
 return
-function Model.move 0
+function Model.canMove 2
 push argument 0
 pop pointer 0
 push pointer 0
-push this 0
-push argument 1
-push this 3
-call Math.multiply 2
-add
-push this 1
-push argument 2
-push this 3
-call Math.multiply 2
-add
-call Model.withinBounds 3
+call Model.isMovable 1
+not
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push this 1
+push this 0
+sub
+push constant 8
+call Math.divide 2
 push argument 1
-push constant 1
+add
+pop local 0
+push this 2
+push constant 8
+call Math.divide 2
+push argument 2
+add
+pop local 1
+push argument 3
+push local 0
+push local 1
+call Map.canMove 3
+return
+function Model.move 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+push pointer 0
+call Model.isMovable 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 3
+push this 1
+push this 0
+sub
+push constant 8
+call Math.divide 2
+push this 2
+push constant 8
+call Math.divide 2
+call Map.movePlayer 3
+pop local 0
+push constant 0
+push local 0
+add
+pop pointer 1
+push that 0
+push constant 0
 eq
+not
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push pointer 0
-call Model.moveRight 1
+push constant 30
+call Sys.wait 1
 pop temp 0
+push constant 0
+push local 0
+add
+pop pointer 1
+push that 0
+pop local 1
+push local 0
+call Memory.deAlloc 1
+pop temp 0
+push local 1
+return
 label IF_FALSE1
-push argument 1
 push constant 1
-neg
-eq
+push local 0
+add
+pop pointer 1
+push that 0
+push constant 8
+call Math.multiply 2
+push this 0
+add
+pop this 1
+push constant 2
+push local 0
+add
+pop pointer 1
+push that 0
+push constant 8
+call Math.multiply 2
+pop this 2
+push local 0
+call Memory.deAlloc 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+push this 1
+push argument 1
+push this 4
+call Math.multiply 2
+add
+push this 2
+push argument 2
+push this 4
+call Math.multiply 2
+add
+call Model.withinBounds 3
+push pointer 0
+push argument 1
+push argument 2
+push argument 3
+call Model.canMove 4
+and
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push pointer 0
-call Model.moveLeft 1
-pop temp 0
-label IF_FALSE2
-push argument 2
+push argument 1
 push constant 1
 eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push pointer 0
-call Model.moveDown 1
+call Model.moveRight 1
 pop temp 0
 label IF_FALSE3
-push argument 2
+push argument 1
 push constant 1
 neg
 eq
@@ -382,12 +469,82 @@ if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
 push pointer 0
-call Model.moveUp 1
+call Model.moveLeft 1
 pop temp 0
 label IF_FALSE4
-label IF_FALSE0
-push constant 15
+push argument 2
+push constant 1
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push pointer 0
+call Model.moveDown 1
+pop temp 0
+label IF_FALSE5
+push argument 2
+push constant 1
+neg
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push pointer 0
+call Model.moveUp 1
+pop temp 0
+label IF_FALSE6
+label IF_FALSE2
+push constant 30
 call Sys.wait 1
 pop temp 0
+push local 1
+return
+function Model.getX 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Model.getY 0
+push argument 0
+pop pointer 0
+push this 2
+return
+function Model.getXRemainder 0
+push argument 0
+pop pointer 0
+push this 1
+push this 0
+sub
+push constant 8
+push this 1
+push this 0
+sub
+push constant 8
+call Math.divide 2
+call Math.multiply 2
+sub
+return
+function Model.getYRemainder 0
+push argument 0
+pop pointer 0
+push this 2
+push constant 8
+push this 2
+push constant 8
+call Math.divide 2
+call Math.multiply 2
+sub
+return
+function Model.isMovable 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Model.getXRemainder 1
 push constant 0
+eq
+push pointer 0
+call Model.getYRemainder 1
+push constant 0
+eq
+and
 return

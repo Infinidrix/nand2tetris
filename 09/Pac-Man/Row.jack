@@ -76,7 +76,10 @@ class Row{
                 (((i > 0) & (i < 5)) | ((i > 6) & (i < 11)) | 
                 (i=14) | (i=17) | ((i>19) & (i<24)) | ((i>24) & (i<28)))){
                     let rowVals[i] = Cell.new(true, false, 0);
-            } else { if ((row = 30) & 
+            } else { if (((row > 13) & (row < 19)) & 
+                ((i>14) & (i<17))) {
+                    let rowVals[i] = Cell.new(false, false, 0);
+            } else {if ((row = 30) & 
                 (((i > 10) &  (i < 15)) | ((i > 16) & (i < 21)) | (i = 25))){
                     let rowVals[i] = Cell.new(true, false, 0);
             } else{ if ((row = 29) & 
@@ -125,7 +128,7 @@ class Row{
                     let rowVals[i] = Cell.new(true, false, 0);
             } else {
                     let rowVals[i] = Cell.new(false, true, 0);
-            }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+            }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
             let i = i + 1;
             }    
         return;

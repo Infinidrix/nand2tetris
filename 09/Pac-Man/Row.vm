@@ -1,4 +1,4 @@
-function Row.new 1
+function Row.new 0
 push constant 3
 call Memory.alloc 1
 pop pointer 0
@@ -9,6 +9,14 @@ pop this 2
 push this 2
 call Array.new 1
 pop this 0
+push pointer 0
+call Row.initializeRow 1
+pop temp 0
+push pointer 0
+return
+function Row.initializeRow 1
+push argument 0
+pop pointer 0
 push constant 0
 pop local 0
 label WHILE_EXP0
@@ -17,10 +25,10 @@ push this 2
 lt
 not
 if-goto WHILE_END0
-push argument 0
+push this 1
 push constant 0
 eq
-push argument 0
+push this 1
 push constant 31
 eq
 or
@@ -32,6 +40,15 @@ push local 0
 push constant 31
 eq
 or
+push local 0
+push constant 15
+eq
+push local 0
+push constant 16
+eq
+or
+not
+and
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -41,7 +58,6 @@ add
 push constant 0
 not
 push constant 0
-not
 push constant 0
 call Cell.new 3
 pop temp 0
@@ -50,6 +66,1426 @@ push temp 0
 pop that 0
 goto IF_END0
 label IF_FALSE0
+push this 1
+push constant 1
+eq
+push local 0
+push constant 10
+gt
+push local 0
+push constant 15
+lt
+and
+push local 0
+push constant 16
+gt
+push local 0
+push constant 21
+lt
+and
+or
+push local 0
+push constant 25
+eq
+or
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END1
+label IF_FALSE1
+push this 1
+push constant 2
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 6
+gt
+push local 0
+push constant 8
+lt
+and
+or
+push local 0
+push constant 10
+gt
+push local 0
+push constant 15
+lt
+and
+or
+push local 0
+push constant 16
+gt
+push local 0
+push constant 21
+lt
+and
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END2
+label IF_FALSE2
+push this 1
+push constant 3
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 6
+gt
+push local 0
+push constant 8
+lt
+and
+or
+push local 0
+push constant 10
+gt
+push local 0
+push constant 15
+lt
+and
+or
+push local 0
+push constant 16
+gt
+push local 0
+push constant 21
+lt
+and
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END3
+label IF_FALSE3
+push this 1
+push constant 4
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 6
+gt
+push local 0
+push constant 8
+lt
+and
+or
+push local 0
+push constant 10
+gt
+push local 0
+push constant 15
+lt
+and
+or
+push local 0
+push constant 16
+gt
+push local 0
+push constant 21
+lt
+and
+or
+push local 0
+push constant 22
+gt
+push local 0
+push constant 26
+lt
+and
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END4
+label IF_FALSE4
+push this 1
+push constant 6
+eq
+push local 0
+push constant 27
+eq
+push local 0
+push constant 30
+eq
+or
+and
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END5
+label IF_FALSE5
+push this 1
+push constant 7
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 6
+gt
+push local 0
+push constant 15
+lt
+and
+or
+push local 0
+push constant 16
+gt
+push local 0
+push constant 21
+lt
+and
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 24
+gt
+push local 0
+push constant 28
+lt
+and
+or
+push local 0
+push constant 30
+eq
+or
+and
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END6
+label IF_FALSE6
+push this 1
+push constant 8
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 10
+eq
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END7
+label IF_FALSE7
+push this 1
+push constant 9
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 10
+eq
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END8
+label IF_FALSE8
+push this 1
+push constant 10
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 7
+eq
+or
+push local 0
+push constant 10
+eq
+or
+push local 0
+push constant 20
+eq
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 25
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END9
+label IF_FALSE9
+push this 1
+push constant 11
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 7
+eq
+or
+push local 0
+push constant 10
+eq
+or
+push local 0
+push constant 20
+eq
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 25
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END10
+label IF_FALSE10
+push this 1
+push constant 12
+eq
+push local 0
+push constant 7
+eq
+push local 0
+push constant 10
+eq
+or
+push local 0
+push constant 20
+eq
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 25
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END11
+label IF_FALSE11
+push this 1
+push constant 13
+eq
+push local 0
+push constant 7
+eq
+push local 0
+push constant 13
+gt
+push local 0
+push constant 18
+lt
+and
+or
+push local 0
+push constant 20
+eq
+or
+push local 0
+push constant 25
+eq
+or
+and
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END12
+label IF_FALSE12
+push this 1
+push constant 14
+eq
+push local 0
+push constant 7
+eq
+push local 0
+push constant 14
+eq
+or
+push local 0
+push constant 17
+eq
+or
+push local 0
+push constant 20
+eq
+or
+push local 0
+push constant 25
+eq
+or
+and
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END13
+label IF_FALSE13
+push this 1
+push constant 15
+eq
+push local 0
+push constant 0
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 6
+gt
+push local 0
+push constant 11
+lt
+and
+or
+push local 0
+push constant 14
+eq
+or
+push local 0
+push constant 17
+eq
+or
+push local 0
+push constant 19
+gt
+push local 0
+push constant 24
+lt
+and
+or
+push local 0
+push constant 24
+gt
+push local 0
+push constant 28
+lt
+and
+or
+and
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END14
+label IF_FALSE14
+push this 1
+push constant 16
+eq
+push local 0
+push constant 0
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 6
+gt
+push local 0
+push constant 11
+lt
+and
+or
+push local 0
+push constant 14
+eq
+or
+push local 0
+push constant 17
+eq
+or
+push local 0
+push constant 19
+gt
+push local 0
+push constant 24
+lt
+and
+or
+push local 0
+push constant 24
+gt
+push local 0
+push constant 28
+lt
+and
+or
+and
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END15
+label IF_FALSE15
+push this 1
+push constant 17
+eq
+push local 0
+push constant 0
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 6
+gt
+push local 0
+push constant 11
+lt
+and
+or
+push local 0
+push constant 14
+eq
+or
+push local 0
+push constant 17
+eq
+or
+push local 0
+push constant 19
+gt
+push local 0
+push constant 24
+lt
+and
+or
+push local 0
+push constant 24
+gt
+push local 0
+push constant 28
+lt
+and
+or
+and
+if-goto IF_TRUE16
+goto IF_FALSE16
+label IF_TRUE16
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END16
+label IF_FALSE16
+push this 1
+push constant 30
+eq
+push local 0
+push constant 10
+gt
+push local 0
+push constant 15
+lt
+and
+push local 0
+push constant 16
+gt
+push local 0
+push constant 21
+lt
+and
+or
+push local 0
+push constant 25
+eq
+or
+and
+if-goto IF_TRUE17
+goto IF_FALSE17
+label IF_TRUE17
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END17
+label IF_FALSE17
+push this 1
+push constant 29
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 6
+gt
+push local 0
+push constant 8
+lt
+and
+or
+push local 0
+push constant 10
+gt
+push local 0
+push constant 15
+lt
+and
+or
+push local 0
+push constant 16
+gt
+push local 0
+push constant 21
+lt
+and
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE18
+goto IF_FALSE18
+label IF_TRUE18
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END18
+label IF_FALSE18
+push this 1
+push constant 28
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 6
+gt
+push local 0
+push constant 8
+lt
+and
+or
+push local 0
+push constant 10
+gt
+push local 0
+push constant 15
+lt
+and
+or
+push local 0
+push constant 16
+gt
+push local 0
+push constant 21
+lt
+and
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE19
+goto IF_FALSE19
+label IF_TRUE19
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END19
+label IF_FALSE19
+push this 1
+push constant 27
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 6
+gt
+push local 0
+push constant 8
+lt
+and
+or
+push local 0
+push constant 10
+gt
+push local 0
+push constant 15
+lt
+and
+or
+push local 0
+push constant 16
+gt
+push local 0
+push constant 21
+lt
+and
+or
+push local 0
+push constant 22
+gt
+push local 0
+push constant 26
+lt
+and
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE20
+goto IF_FALSE20
+label IF_TRUE20
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END20
+label IF_FALSE20
+push this 1
+push constant 26
+eq
+push local 0
+push constant 27
+eq
+push local 0
+push constant 30
+eq
+or
+and
+if-goto IF_TRUE21
+goto IF_FALSE21
+label IF_TRUE21
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END21
+label IF_FALSE21
+push this 1
+push constant 25
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 6
+gt
+push local 0
+push constant 15
+lt
+and
+or
+push local 0
+push constant 16
+gt
+push local 0
+push constant 21
+lt
+and
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 24
+gt
+push local 0
+push constant 28
+lt
+and
+or
+push local 0
+push constant 30
+eq
+or
+and
+if-goto IF_TRUE22
+goto IF_FALSE22
+label IF_TRUE22
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END22
+label IF_FALSE22
+push this 1
+push constant 24
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 10
+eq
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE23
+goto IF_FALSE23
+label IF_TRUE23
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END23
+label IF_FALSE23
+push this 1
+push constant 23
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 10
+eq
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE24
+goto IF_FALSE24
+label IF_TRUE24
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END24
+label IF_FALSE24
+push this 1
+push constant 22
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 7
+eq
+or
+push local 0
+push constant 10
+eq
+or
+push local 0
+push constant 20
+eq
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 25
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE25
+goto IF_FALSE25
+label IF_TRUE25
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END25
+label IF_FALSE25
+push this 1
+push constant 21
+eq
+push local 0
+push constant 2
+gt
+push local 0
+push constant 5
+lt
+and
+push local 0
+push constant 7
+eq
+or
+push local 0
+push constant 10
+eq
+or
+push local 0
+push constant 20
+eq
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 25
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE26
+goto IF_FALSE26
+label IF_TRUE26
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END26
+label IF_FALSE26
+push this 1
+push constant 20
+eq
+push local 0
+push constant 7
+eq
+push local 0
+push constant 10
+eq
+or
+push local 0
+push constant 20
+eq
+or
+push local 0
+push constant 23
+eq
+or
+push local 0
+push constant 25
+eq
+or
+push local 0
+push constant 27
+eq
+or
+and
+if-goto IF_TRUE27
+goto IF_FALSE27
+label IF_TRUE27
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END27
+label IF_FALSE27
+push this 1
+push constant 19
+eq
+push local 0
+push constant 7
+eq
+push local 0
+push constant 13
+gt
+push local 0
+push constant 18
+lt
+and
+or
+push local 0
+push constant 20
+eq
+or
+push local 0
+push constant 25
+eq
+or
+and
+if-goto IF_TRUE28
+goto IF_FALSE28
+label IF_TRUE28
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END28
+label IF_FALSE28
+push this 1
+push constant 18
+eq
+push local 0
+push constant 7
+eq
+push local 0
+push constant 14
+eq
+or
+push local 0
+push constant 17
+eq
+or
+push local 0
+push constant 20
+eq
+or
+push local 0
+push constant 25
+eq
+or
+and
+if-goto IF_TRUE29
+goto IF_FALSE29
+label IF_TRUE29
+push local 0
+push this 0
+add
+push constant 0
+not
+push constant 0
+push constant 0
+call Cell.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto IF_END29
+label IF_FALSE29
 push local 0
 push this 0
 add
@@ -62,6 +1498,35 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
+label IF_END29
+label IF_END28
+label IF_END27
+label IF_END26
+label IF_END25
+label IF_END24
+label IF_END23
+label IF_END22
+label IF_END21
+label IF_END20
+label IF_END19
+label IF_END18
+label IF_END17
+label IF_END16
+label IF_END15
+label IF_END14
+label IF_END13
+label IF_END12
+label IF_END11
+label IF_END10
+label IF_END9
+label IF_END8
+label IF_END7
+label IF_END6
+label IF_END5
+label IF_END4
+label IF_END3
+label IF_END2
+label IF_END1
 label IF_END0
 push local 0
 push constant 1
@@ -69,7 +1534,7 @@ add
 pop local 0
 goto WHILE_EXP0
 label WHILE_END0
-push pointer 0
+push constant 0
 return
 function Row.get 0
 push argument 0

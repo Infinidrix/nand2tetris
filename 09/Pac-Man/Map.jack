@@ -74,13 +74,21 @@ class Map{
         }
         if (cell.hasPellet()){
             do cell.setPellet(false);
-            do Screen.setColor(false);
-            do Screen.drawPixel((row * 8) + hOffset + 4, (col * 8) + vOffset + 4);
             let pellets = pellets - 1;
             if (pellets = 0){
                 let result[0] = 1;
                 return result;
             }
+        }
+        if ((row = 0)){
+            do Screen.setColor(false);
+            do Screen.drawRectangle(hOffset, (col * 8) + vOffset, hOffset + 8, (col * 8) + vOffset + 8);
+            let result[1] = 31;
+        }
+        if ((row = 31)){
+            do Screen.setColor(false);
+            do Screen.drawRectangle((row * 8) + hOffset, (col * 8) + vOffset, (row * 8) + hOffset + 8, (col * 8) + vOffset + 8);
+            let result[1] = 0;
         }
         do cell.setPlayer();
         return result;

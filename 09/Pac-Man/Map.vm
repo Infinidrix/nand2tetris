@@ -244,25 +244,6 @@ push local 0
 push constant 0
 call Cell.setPellet 2
 pop temp 0
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push argument 1
-push constant 8
-call Math.multiply 2
-push this 4
-add
-push constant 4
-add
-push argument 2
-push constant 8
-call Math.multiply 2
-push this 5
-add
-push constant 4
-add
-call Screen.drawPixel 2
-pop temp 0
 push this 1
 push constant 1
 sub
@@ -285,6 +266,86 @@ push local 1
 return
 label IF_FALSE2
 label IF_FALSE1
+push argument 1
+push constant 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 4
+push argument 2
+push constant 8
+call Math.multiply 2
+push this 5
+add
+push this 4
+push constant 8
+add
+push argument 2
+push constant 8
+call Math.multiply 2
+push this 5
+add
+push constant 8
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 1
+push local 1
+add
+push constant 31
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE3
+push argument 1
+push constant 31
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push argument 1
+push constant 8
+call Math.multiply 2
+push this 4
+add
+push argument 2
+push constant 8
+call Math.multiply 2
+push this 5
+add
+push argument 1
+push constant 8
+call Math.multiply 2
+push this 4
+add
+push constant 8
+add
+push argument 2
+push constant 8
+call Math.multiply 2
+push this 5
+add
+push constant 8
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 1
+push local 1
+add
+push constant 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE4
 push local 0
 call Cell.setPlayer 1
 pop temp 0

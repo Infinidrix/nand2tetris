@@ -154,7 +154,7 @@ class Row{
             do currCell.dispose();
             let i = i + 1;
         }
-        do Memory.dealloc(this);
+        do Memory.deAlloc(this);
         return;
     }
 }

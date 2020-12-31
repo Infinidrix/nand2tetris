@@ -111,7 +111,7 @@ class Map{
             do currRow.dispose();
             let i = i + 1;
         }
-        do Memory.dealloc(this);
+        do Memory.deAlloc(this);
         return;
     }
 }

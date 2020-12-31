@@ -9,7 +9,7 @@ class Test {
        let hOffset = 255; 
       // Creates a 8 by 8 pixels model and positions it at the top-left
       // of the game.
-      let player = Model.new(8, 8, 8, 4, hOffset);
+      let player = Model.new(8, 8, 8, 2, hOffset);
       let map = Map.new(32, 32, hOffset, 0);
       do map.drawMap(); // draw map with hoffset and voffset
       let xDirection = 0;  // initial state is no movement

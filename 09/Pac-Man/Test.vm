@@ -7,7 +7,7 @@ pop this 2
 push constant 8
 push constant 8
 push constant 8
-push constant 4
+push constant 2
 push this 2
 call Model.new 5
 pop this 0

@@ -12,7 +12,6 @@
 */
 
 class Utils {
-
     /* returns a % b */
     function int mod(int a, int b) {
         var int d;

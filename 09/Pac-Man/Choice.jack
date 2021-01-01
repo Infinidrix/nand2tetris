@@ -1,7 +1,8 @@
 class Choice{
     field int xMove;
     field int yMove;
-
+    /** class for making the random movement choices for the enemy players
+    since we are not allowed to make multidimensional array */
     constructor Choice new(int x, int y){
         let xMove = x;
         let yMove = y;

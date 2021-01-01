@@ -131,16 +131,30 @@ push constant 8
 call Math.multiply 2
 push this 4
 add
-push constant 4
+push constant 3
 add
 push local 1
 push constant 8
 call Math.multiply 2
 push this 5
 add
-push constant 4
+push constant 3
 add
-call Screen.drawPixel 2
+push local 0
+push constant 8
+call Math.multiply 2
+push this 4
+add
+push constant 5
+add
+push local 1
+push constant 8
+call Math.multiply 2
+push this 5
+add
+push constant 5
+add
+call Screen.drawRectangle 4
 pop temp 0
 label IF_FALSE1
 push local 1

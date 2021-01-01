@@ -19,6 +19,7 @@ class Test {
       do drawInstructions();
       let xDirection = 0;  // initial state is no movement
       let yDirection = 0;
+      // add enemies to the game
       let enemy1 = EnemyModel.new(64, 88, 8, 1, hOffset, map);
       let enemy2 = EnemyModel.new(64, 160, 8, 1, hOffset, map);
       let enemy3 = EnemyModel.new(22 * 8, 88, 8, 1, hOffset, map);
@@ -26,12 +27,13 @@ class Test {
       return this;
    }
 
+    /** print out the instructions to the right of the screen */
    method void drawInstructions(){
        do Output.printString("   Tetris Game");
        do Output.println();
        do Output.println();
        do Output.println();
-       do Output.printString(" Collect all pellets to win");
+       do Output.printString(" Collect all dots to win");
        do Output.println();
        do Output.printString("- Don't bump into the circles");
        do Output.println();
@@ -43,7 +45,7 @@ class Test {
        do Output.println();
        do Output.println();
        do Output.println();
-       do Output.printString("   Pellets: ");
+       do Output.printString("   Dots left: ");
        do Output.printInt(map.getPellets());
        return;
    }
@@ -125,12 +127,13 @@ class Test {
         if (gameState = 1){
             do Output.printString("You have won!!");
         }else {
-            do Output.printString("Better luck next time!!");
+            do Output.printString("You bumped into a circle!!");
         }
         do dispose();
         return;
     }
 
+    /** helper method to perform backspaces */
     method void backspace(int amount){
         while (~(amount = 0)){
             do Output.backSpace();

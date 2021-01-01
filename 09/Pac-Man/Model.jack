@@ -30,26 +30,7 @@ class Model{
         return;
     }
 
-    /** draws the new location of the model effiecently */ 
-    method void redraw(int xDirection, int yDirection){
-        var int newX, newY;
-        if (withinBounds(x + xDirection, y + yDirection)){
-            if (~(xDirection = 0)){
-                let newX = x + xDirection - 1;
-                let newY = y + size;
-            } else {
-                let newY = y + yDirection - 1;
-                let newX = x + size;
-            }
-            do Screen.setColor(false);
-            do Screen.drawRectangle(x, y, newX, newY);
-            do Screen.setColor(true);
-            do Screen.drawRectangle(x + size, y + size, newX + size, newY + size);
-        }
-        return;
-    }
-
-    /** Moves the square up by 2 pixels. */
+    /** Moves the square up by step pixels. */
    method void moveUp() {
         do Screen.setColor(false);
         do Screen.drawRectangle(x, (y + size) - step + 1, x + size, y + size);
@@ -59,7 +40,7 @@ class Model{
       return;
    }
 
-   /** Moves the square down by 2 pixels. */
+   /** Moves the square down by step pixels. */
    method void moveDown() {
          do Screen.setColor(false);
          do Screen.drawRectangle(x, y, x + size, y + step - 1);
@@ -69,7 +50,7 @@ class Model{
       return;
    }
 
-   /** Moves the square left by 2 pixels. */
+   /** Moves the square left by step pixels. */
    method void moveLeft() {
          do Screen.setColor(false);
          do Screen.drawRectangle((x + size) - step + 1, y, x + size, y + size);
@@ -79,7 +60,7 @@ class Model{
       return;
    }
 
-   /** Moves the square right by 2 pixels. */
+   /** Moves the square right by step pixels. */
    method void moveRight() {
         do Screen.setColor(false);
         do Screen.drawRectangle(x, y, x + step - 1, y + size);

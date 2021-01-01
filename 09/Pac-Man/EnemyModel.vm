@@ -209,15 +209,29 @@ push constant 8
 call Math.multiply 2
 push this 0
 add
-push constant 4
+push constant 3
 add
 push this 7
 call Cell.getCol 1
 push constant 8
 call Math.multiply 2
-push constant 4
+push constant 3
 add
-call Screen.drawPixel 2
+push this 7
+call Cell.getRow 1
+push constant 8
+call Math.multiply 2
+push this 0
+add
+push constant 5
+add
+push this 7
+call Cell.getCol 1
+push constant 8
+call Math.multiply 2
+push constant 5
+add
+call Screen.drawRectangle 4
 pop temp 0
 label IF_FALSE1
 push argument 3

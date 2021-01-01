@@ -10,6 +10,7 @@ class Row{
         return this;
     }
 
+    /** create the row, basically create the map. Since we can't initalize list, this is going to be messy */
     method void initializeRow(){
         var int i;
         let i = 0;
@@ -158,6 +159,7 @@ class Row{
         return;
     }
 
+    /** return the number of pellets */
     method int countPellets(){
         var Cell currCell;
         var int i, count;

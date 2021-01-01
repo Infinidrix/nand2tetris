@@ -1,4 +1,5 @@
 class Main {
+    // start and run the game
     function void main() {
         var Test game;
         let game = Test.new();

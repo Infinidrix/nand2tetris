@@ -1,4 +1,4 @@
-function Model.new 0
+function EnemyModel.new 0
 push constant 5
 call Memory.alloc 1
 pop pointer 0
@@ -15,11 +15,11 @@ pop this 3
 push argument 3
 pop this 4
 push pointer 0
-call Model.draw 1
+call EnemyModel.draw 1
 pop temp 0
 push pointer 0
 return
-function Model.dispose 0
+function EnemyModel.dispose 0
 push argument 0
 pop pointer 0
 push pointer 0
@@ -27,7 +27,7 @@ call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return
-function Model.draw 0
+function EnemyModel.draw 0
 push argument 0
 pop pointer 0
 push constant 0
@@ -35,92 +35,59 @@ not
 call Screen.setColor 1
 pop temp 0
 push this 1
-push this 2
-push this 1
-push this 3
+push constant 4
 add
 push this 2
-push this 3
+push constant 4
 add
-call Screen.drawRectangle 4
+push constant 4
+call Screen.drawCircle 3
 pop temp 0
 push constant 0
 return
-function Model.redraw 2
+function EnemyModel.redraw 2
 push argument 0
 pop pointer 0
-push pointer 0
-push this 1
-push argument 1
-add
-push this 2
-push argument 2
-add
-call Model.withinBounds 3
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push argument 1
-push constant 0
-eq
-not
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push this 1
-push argument 1
-add
-push constant 1
-sub
-pop local 0
-push this 2
-push this 3
-add
-pop local 1
-goto IF_END1
-label IF_FALSE1
-push this 2
-push argument 2
-add
-push constant 1
-sub
-pop local 1
-push this 1
-push this 3
-add
-pop local 0
-label IF_END1
 push constant 0
 call Screen.setColor 1
 pop temp 0
 push this 1
+push constant 4
+add
 push this 2
-push local 0
-push local 1
-call Screen.drawRectangle 4
+push constant 4
+add
+push constant 4
+call Screen.drawCircle 3
 pop temp 0
+push this 1
+push this 4
+push argument 1
+call Math.multiply 2
+add
+pop this 1
+push this 2
+push this 4
+push argument 2
+call Math.multiply 2
+add
+pop this 2
 push constant 0
 not
 call Screen.setColor 1
 pop temp 0
 push this 1
-push this 3
+push constant 4
 add
 push this 2
-push this 3
+push constant 4
 add
-push local 0
-push this 3
-add
-push local 1
-push this 3
-add
-call Screen.drawRectangle 4
+push constant 4
+call Screen.drawCircle 3
 pop temp 0
-label IF_FALSE0
 push constant 0
 return
-function Model.moveUp 0
+function EnemyModel.moveUp 0
 push argument 0
 pop pointer 0
 push constant 0
@@ -162,7 +129,7 @@ sub
 pop this 2
 push constant 0
 return
-function Model.moveDown 0
+function EnemyModel.moveDown 0
 push argument 0
 pop pointer 0
 push constant 0
@@ -204,7 +171,7 @@ add
 pop this 2
 push constant 0
 return
-function Model.moveLeft 0
+function EnemyModel.moveLeft 0
 push argument 0
 pop pointer 0
 push constant 0
@@ -246,7 +213,7 @@ sub
 pop this 1
 push constant 0
 return
-function Model.moveRight 0
+function EnemyModel.moveRight 0
 push argument 0
 pop pointer 0
 push constant 0
@@ -290,7 +257,7 @@ add
 pop this 1
 push constant 0
 return
-function Model.withinBounds 0
+function EnemyModel.withinBounds 0
 push argument 0
 pop pointer 0
 push argument 2
@@ -329,11 +296,11 @@ return
 label IF_FALSE0
 push constant 0
 return
-function Model.canMove 2
+function EnemyModel.canMove 2
 push argument 0
 pop pointer 0
 push pointer 0
-call Model.isMovable 1
+call EnemyModel.isMovable 1
 not
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -361,13 +328,13 @@ push local 0
 push local 1
 call Map.canMove 3
 return
-function Model.move 2
+function EnemyModel.move 2
 push argument 0
 pop pointer 0
 push constant 0
 pop local 1
 push pointer 0
-call Model.isMovable 1
+call EnemyModel.isMovable 1
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -393,7 +360,7 @@ not
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push constant 25
+push constant 30
 call Sys.wait 1
 pop temp 0
 push constant 0
@@ -441,12 +408,12 @@ push argument 2
 push this 4
 call Math.multiply 2
 add
-call Model.withinBounds 3
+call EnemyModel.withinBounds 3
 push pointer 0
 push argument 1
 push argument 2
 push argument 3
-call Model.canMove 4
+call EnemyModel.canMove 4
 and
 if-goto IF_TRUE2
 goto IF_FALSE2
@@ -458,7 +425,7 @@ if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push pointer 0
-call Model.moveRight 1
+call EnemyModel.moveRight 1
 pop temp 0
 label IF_FALSE3
 push argument 1
@@ -469,7 +436,7 @@ if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
 push pointer 0
-call Model.moveLeft 1
+call EnemyModel.moveLeft 1
 pop temp 0
 label IF_FALSE4
 push argument 2
@@ -479,7 +446,7 @@ if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
 push pointer 0
-call Model.moveDown 1
+call EnemyModel.moveDown 1
 pop temp 0
 label IF_FALSE5
 push argument 2
@@ -490,50 +457,60 @@ if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
 push pointer 0
-call Model.moveUp 1
+call EnemyModel.moveUp 1
 pop temp 0
 label IF_FALSE6
 label IF_FALSE2
-push constant 25
+push constant 30
 call Sys.wait 1
 pop temp 0
 push local 1
 return
-function Model.getX 0
+function EnemyModel.getX 0
 push argument 0
 pop pointer 0
 push this 1
 return
-function Model.getY 0
+function EnemyModel.getY 0
 push argument 0
 pop pointer 0
 push this 2
 return
-function Model.getXRemainder 0
+function EnemyModel.getXRemainder 0
 push argument 0
 pop pointer 0
 push this 1
 push this 0
 sub
 push constant 8
-call Utils.mod 2
+push this 1
+push this 0
+sub
+push constant 8
+call Math.divide 2
+call Math.multiply 2
+sub
 return
-function Model.getYRemainder 0
+function EnemyModel.getYRemainder 0
 push argument 0
 pop pointer 0
 push this 2
 push constant 8
-call Utils.mod 2
+push this 2
+push constant 8
+call Math.divide 2
+call Math.multiply 2
+sub
 return
-function Model.isMovable 0
+function EnemyModel.isMovable 0
 push argument 0
 pop pointer 0
 push pointer 0
-call Model.getXRemainder 1
+call EnemyModel.getXRemainder 1
 push constant 0
 eq
 push pointer 0
-call Model.getYRemainder 1
+call EnemyModel.getYRemainder 1
 push constant 0
 eq
 and

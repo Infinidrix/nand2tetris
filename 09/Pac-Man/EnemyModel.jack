@@ -2,13 +2,13 @@
     player's and the enemy ghosts' avatars
 */
 
-class Model{
+class EnemyModel{
     field int hOffset; // the horizontal offset of the game
     field int x, y; // model's top left corner
     field int size; // the side length of model square
     field int step; // the length that the model can move in one turn 
 
-    constructor Model new(int Ax, int Ay, int Asize, int Astep, int AhOffset){
+    constructor EnemyModel new(int Ax, int Ay, int Asize, int Astep, int AhOffset){
         let hOffset = AhOffset;
         let x = Ax + hOffset;
         let y = Ay;
@@ -26,26 +26,19 @@ class Model{
     /** draws the model for the first time alone, next calls are to redraw */
     method void draw() {
         do Screen.setColor(true);
-        do Screen.drawRectangle(x, y, x + size, y + size);
+        do Screen.drawCircle(x + 4, y + 4, 4);
         return;
     }
 
     /** draws the new location of the model effiecently */ 
     method void redraw(int xDirection, int yDirection){
         var int newX, newY;
-        if (withinBounds(x + xDirection, y + yDirection)){
-            if (~(xDirection = 0)){
-                let newX = x + xDirection - 1;
-                let newY = y + size;
-            } else {
-                let newY = y + yDirection - 1;
-                let newX = x + size;
-            }
-            do Screen.setColor(false);
-            do Screen.drawRectangle(x, y, newX, newY);
-            do Screen.setColor(true);
-            do Screen.drawRectangle(x + size, y + size, newX + size, newY + size);
-        }
+        do Screen.setColor(false);
+        do Screen.drawCircle(x + 4, y + 4, 4);
+        let x = x + (step * xDirection);
+        let y = y + (step * yDirection);
+        do Screen.setColor(true);
+        do Screen.drawCircle(x + 4, y + 4, 4);
         return;
     }
 
@@ -118,7 +111,7 @@ class Model{
         if (isMovable()){
             let result = map.movePlayer((x - hOffset) / 8, y/8);
             if (~(result[0] = 0)){
-                do Sys.wait(25);
+                do Sys.wait(30);
                 let returnValue = result[0];
                 do Memory.deAlloc(result);
                 return returnValue;
@@ -134,7 +127,7 @@ class Model{
             if (yDir = 1) { do moveDown(); }
             if (yDir = -1) { do moveUp(); }
         }
-        do Sys.wait(25);
+        do Sys.wait(30);
         return returnValue;
     }
 
@@ -147,11 +140,11 @@ class Model{
     }
 
     method int getXRemainder(){
-        return Utils.mod(x - hOffset, 8);
+        return (x - hOffset) - (8 * ((x - hOffset) / 8));
     }
 
     method int getYRemainder(){
-        return Utils.mod(y, 8);
+        return y - (8 * (y / 8));
     }
     method boolean isMovable(){
         return ((getXRemainder() = 0) &

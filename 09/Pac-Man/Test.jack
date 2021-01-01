@@ -1,5 +1,6 @@
 class Test {
    field Model player; // the player model
+   field EnemyModel enemy1, enemy2, enemy3, enemy4;
    field Map map; // the game map
    field int hOffset; // the horizontal offset of the map 
    field int xDirection, yDirection; // the square's current direction
@@ -11,9 +12,14 @@ class Test {
       // of the game.
       let player = Model.new(8, 8, 8, 2, hOffset);
       let map = Map.new(32, 32, hOffset, 0);
+      do LCGRandom.initalize();
       do map.drawMap(); // draw map with hoffset and voffset
       let xDirection = 0;  // initial state is no movement
       let yDirection = 0;
+      let enemy1 = EnemyModel.new(64, 88, 8, 1, hOffset, map);
+      let enemy2 = EnemyModel.new(64, 160, 8, 1, hOffset, map);
+      let enemy3 = EnemyModel.new(22 * 8, 88, 8, 1, hOffset, map);
+      let enemy4 = EnemyModel.new(22 * 8, 160, 8, 1, hOffset, map);
       return this;
    }
 
@@ -28,19 +34,23 @@ class Test {
     /** the main game loop */
     method void run() {
         var int key, tempKey, main_key;
-        var int gameState;
+        var int gameState, randseed, counter;
         let gameState = 0;
         let key = 0;
         let main_key = 0;
         let tempKey = 0;
+        let randseed = 0;
+        let counter = 0;
         // while exit key (q) not pressed
-        while ((~(key = 81)) | (~(gameState = 0))){
+        while ((~(key = 81)) & (gameState = 0)){
             let key = Keyboard.keyPressed();
             if (player.isMovable()){ // changes dir only if it is in the grid box
                 if (key = 0){
                     let main_key = tempKey;
                 } else { let main_key = key; }
                 let tempKey = main_key;
+
+
             } else{
                 if (~(key = 0)){
                     let tempKey = key;
@@ -50,8 +60,26 @@ class Test {
             if (main_key = 131) { let yDirection = -1; let xDirection = 0; } // up arrow 
             if (main_key = 132) { let xDirection = 1; let yDirection = 0; } // right arrow
             if (main_key = 133) { let yDirection = 1; let xDirection = 0; } // down arrow
-
+            if (Utils.mod(counter, 100) = 0) {
+                let randseed = Utils.mod((randseed + 1) + tempKey, 1000);
+                do LCGRandom.setSeed(randseed);
+            }
             let gameState = player.move(xDirection, yDirection, map);
+            
+            if ((Utils.mod(counter, 24) = 0)) {
+                let randseed = Utils.mod((randseed + 1) + tempKey, 1000);
+                do LCGRandom.setSeed(randseed);
+                do LCGRandom.nextMove(enemy1, map);
+                do LCGRandom.nextMove(enemy2, map);
+                do LCGRandom.nextMove(enemy3, map);
+                do LCGRandom.nextMove(enemy4, map);
+            } else {
+                do enemy1.keepState(map);
+                do enemy2.keepState(map);
+                do enemy3.keepState(map);
+                do enemy4.keepState(map);
+            }
+            let counter = counter + 1;
         }
         if (gameState = 1){
             do Output.printString("You have won!!");

@@ -1,19 +1,19 @@
 function Map.new 1
-push constant 6
+push constant 7
 call Memory.alloc 1
 pop pointer 0
 push argument 2
-pop this 4
-push argument 3
 pop this 5
+push argument 3
+pop this 6
 push argument 0
-pop this 2
-push argument 1
 pop this 3
+push argument 1
+pop this 4
 push argument 0
 push argument 1
 call Math.multiply 2
-pop this 1
+pop this 2
 push argument 0
 call Array.new 1
 pop this 0
@@ -54,7 +54,7 @@ call Screen.setColor 1
 pop temp 0
 label WHILE_EXP0
 push local 0
-push this 2
+push this 3
 lt
 not
 if-goto WHILE_END0
@@ -62,7 +62,7 @@ push constant 0
 pop local 1
 label WHILE_EXP1
 push local 1
-push this 3
+push this 4
 lt
 not
 if-goto WHILE_END1
@@ -79,21 +79,21 @@ label IF_TRUE0
 push local 0
 push constant 8
 call Math.multiply 2
-push this 4
+push this 5
 add
 push constant 1
 add
 push local 1
 push constant 8
 call Math.multiply 2
-push this 5
+push this 6
 add
 push constant 1
 add
 push local 0
 push constant 8
 call Math.multiply 2
-push this 4
+push this 5
 add
 push constant 8
 add
@@ -102,7 +102,7 @@ sub
 push local 1
 push constant 8
 call Math.multiply 2
-push this 5
+push this 6
 add
 push constant 8
 add
@@ -119,14 +119,14 @@ label IF_TRUE1
 push local 0
 push constant 8
 call Math.multiply 2
-push this 4
+push this 5
 add
 push constant 4
 add
 push local 1
 push constant 8
 call Math.multiply 2
-push this 5
+push this 6
 add
 push constant 4
 add
@@ -154,7 +154,7 @@ push argument 1
 push constant 0
 lt
 push argument 1
-push this 2
+push this 3
 push constant 1
 sub
 gt
@@ -164,7 +164,7 @@ push constant 0
 lt
 or
 push argument 2
-push this 3
+push this 4
 push constant 1
 sub
 gt
@@ -244,11 +244,11 @@ push local 0
 push constant 0
 call Cell.setPellet 2
 pop temp 0
-push this 1
+push this 2
 push constant 1
 sub
-pop this 1
-push this 1
+pop this 2
+push this 2
 push constant 0
 eq
 if-goto IF_TRUE2
@@ -275,19 +275,19 @@ label IF_TRUE3
 push constant 0
 call Screen.setColor 1
 pop temp 0
-push this 4
+push this 5
 push argument 2
 push constant 8
 call Math.multiply 2
-push this 5
+push this 6
 add
-push this 4
+push this 5
 push constant 8
 add
 push argument 2
 push constant 8
 call Math.multiply 2
-push this 5
+push this 6
 add
 push constant 8
 add
@@ -314,24 +314,24 @@ pop temp 0
 push argument 1
 push constant 8
 call Math.multiply 2
-push this 4
+push this 5
 add
 push argument 2
 push constant 8
 call Math.multiply 2
-push this 5
+push this 6
 add
 push argument 1
 push constant 8
 call Math.multiply 2
-push this 4
+push this 5
 add
 push constant 8
 add
 push argument 2
 push constant 8
 call Math.multiply 2
-push this 5
+push this 6
 add
 push constant 8
 add
@@ -373,7 +373,7 @@ push constant 0
 pop local 0
 label WHILE_EXP0
 push local 0
-push this 2
+push this 3
 lt
 not
 if-goto WHILE_END0

@@ -59,7 +59,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -99,7 +101,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -159,7 +163,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -219,7 +225,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -283,7 +291,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -311,7 +321,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -371,7 +383,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -411,7 +425,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -451,7 +467,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -503,7 +521,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -555,7 +575,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -599,7 +621,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -639,7 +663,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -679,7 +705,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -739,7 +767,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -799,7 +829,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -859,7 +891,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -890,7 +924,9 @@ add
 push constant 0
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -930,7 +966,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -990,7 +1028,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1050,7 +1090,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1114,7 +1156,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1142,7 +1186,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1202,7 +1248,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1242,7 +1290,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1282,7 +1332,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1334,7 +1386,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1386,7 +1440,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1430,7 +1486,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1470,7 +1528,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1510,7 +1570,9 @@ push constant 0
 not
 push constant 0
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0
@@ -1524,7 +1586,9 @@ push constant 0
 push constant 0
 not
 push constant 0
-call Cell.new 3
+push this 1
+push local 0
+call Cell.new 5
 pop temp 0
 pop pointer 1
 push temp 0

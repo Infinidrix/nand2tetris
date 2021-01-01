@@ -1,12 +1,23 @@
 class Cell{
     field boolean hasWall, hasPellet; // true if cell is occupied by wall
     field int occupation; // 0 if unoccupied 1 if player 2 if enemy
+    field int row, col;
 
-    constructor Cell new(boolean AhasWall, boolean AhasPellet, int Aoccupation){
+    constructor Cell new(boolean AhasWall, boolean AhasPellet, int Aoccupation, int Arow, int Acol){
         let hasWall = AhasWall;
         let hasPellet = AhasPellet;
         let occupation = Aoccupation; 
+        let row = Arow;
+        let col = Acol;
         return this;
+    }
+
+    method int getRow(){
+        return row;
+    }
+
+    method int getCol(){
+        return col;
     }
 
     method boolean hasWall(){

@@ -15,119 +15,119 @@ class Row{
         let i = 0;
         while (i < col){
             if (((row = 0) | (row = 31) | (i = 0) | (i = 31)) & (~((i=15) | (i=16)))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             }
             else{ if ((row = 1) & 
                 (((i > 10) &  (i < 15)) | ((i > 16) & (i < 21)) | (i = 25))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else{ if ((row = 2) & 
                 (((i > 2) & (i < 5)) | ((i > 6) & (i < 8)) | 
                 ((i > 10) & (i < 15)) | ((i > 16) & (i < 21)) | (i = 23) | (i = 27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 3) & 
                 (((i > 2) & (i < 5)) | ((i > 6) & (i < 8)) | 
                 ((i > 10) & (i < 15)) | ((i > 16) & (i < 21)) | (i = 23) | (i = 27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             }else { if ((row = 4) & 
                  (((i > 2) & (i < 5)) | ((i > 6) & (i < 8)) | 
                 ((i > 10) & (i < 15)) | ((i > 16) & (i < 21)) | ((i > 22) & ( i < 26)) | (i = 27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else{ if ((row = 6) & ((i = 27) | (i = 30))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 7) &
                 (((i > 2) & (i < 5)) | ((i > 6) & (i < 15)) | ((i > 16) & (i < 21)) |
                 (i = 23) | ((i > 24) & (i < 28)) | (i = 30))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 8) &
                 (((i > 2) & (i < 5)) | (i = 10) | (i = 23) | (i =27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 9) &
                 (((i > 2) & (i < 5)) | (i = 10) | (i = 23) | (i =27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 10) & 
                 (((i > 2) & (i < 5)) | (i = 7) | (i = 10) |
                 (i = 20) | (i = 23) | (i = 25) | (i =27))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 11) & 
                 (((i > 2) & (i < 5)) | (i = 7) | (i = 10) |
                 (i = 20) | (i = 23) | (i = 25) | (i =27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             }else { if ((row = 12) & 
                 ((i = 7) | (i = 10) |
                 (i = 20) | (i = 23) | (i = 25) | (i =27))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 13) & 
                 ((i = 7) | ((i > 13) & (i < 18)) |
                 (i = 20) | (i = 25))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 14) & 
                 ((i = 7) | (i = 14) | (i = 17) |
                 (i = 20) | (i = 25))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 15) & 
                 (((i > 0) & (i < 5)) | ((i > 6) & (i < 11)) | 
                 (i=14) | (i=17) | ((i>19) & (i<24)) | ((i>24) & (i<28)))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 16) & 
                 (((i > 0) & (i < 5)) | ((i > 6) & (i < 11)) | 
                 (i=14) | (i=17) | ((i>19) & (i<24)) | ((i>24) & (i<28)))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 17) & 
                 (((i > 0) & (i < 5)) | ((i > 6) & (i < 11)) | 
                 (i=14) | (i=17) | ((i>19) & (i<24)) | ((i>24) & (i<28)))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if (((row > 13) & (row < 19)) & 
                 ((i>14) & (i<17))) {
-                    let rowVals[i] = Cell.new(false, false, 0);
+                    let rowVals[i] = Cell.new(false, false, 0, row, i);
             } else {if ((row = 30) & 
                 (((i > 10) &  (i < 15)) | ((i > 16) & (i < 21)) | (i = 25))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else{ if ((row = 29) & 
                 (((i > 2) & (i < 5)) | ((i > 6) & (i < 8)) | 
                 ((i > 10) & (i < 15)) | ((i > 16) & (i < 21)) | (i = 23) | (i = 27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 28) & 
                 (((i > 2) & (i < 5)) | ((i > 6) & (i < 8)) | 
                 ((i > 10) & (i < 15)) | ((i > 16) & (i < 21)) | (i = 23) | (i = 27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             }else { if ((row = 27) & 
                  (((i > 2) & (i < 5)) | ((i > 6) & (i < 8)) | 
                 ((i > 10) & (i < 15)) | ((i > 16) & (i < 21)) | ((i > 22) & ( i < 26)) | (i = 27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else{ if ((row = 26) & ((i = 27) | (i = 30))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 25) &
                 (((i > 2) & (i < 5)) | ((i > 6) & (i < 15)) | ((i > 16) & (i < 21)) |
                 (i = 23) | ((i > 24) & (i < 28)) | (i = 30))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 24) &
                 (((i > 2) & (i < 5)) | (i = 10) | (i = 23) | (i =27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 23) &
                 (((i > 2) & (i < 5)) | (i = 10) | (i = 23) | (i =27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 22) & 
                 (((i > 2) & (i < 5)) | (i = 7) | (i = 10) |
                 (i = 20) | (i = 23) | (i = 25) | (i =27))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 21) & 
                 (((i > 2) & (i < 5)) | (i = 7) | (i = 10) |
                 (i = 20) | (i = 23) | (i = 25) | (i =27))){
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             }else { if ((row = 20) & 
                 ((i = 7) | (i = 10) |
                 (i = 20) | (i = 23) | (i = 25) | (i =27))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 19) & 
                 ((i = 7) | ((i > 13) & (i < 18)) |
                 (i = 20) | (i = 25))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else { if ((row = 18) & 
                 ((i = 7) | (i = 14) | (i = 17) |
                 (i = 20) | (i = 25))) {
-                    let rowVals[i] = Cell.new(true, false, 0);
+                    let rowVals[i] = Cell.new(true, false, 0, row, i);
             } else {
-                    let rowVals[i] = Cell.new(false, true, 0);
+                    let rowVals[i] = Cell.new(false, true, 0, row, i);
             }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
             let i = i + 1;
             }    

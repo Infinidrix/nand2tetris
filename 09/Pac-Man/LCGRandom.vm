@@ -1,0 +1,148 @@
+function LCGRandom.initalize 0
+push constant 4
+call Array.new 1
+pop static 5
+push constant 0
+push static 5
+add
+push constant 1
+push constant 0
+call Choice.new 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+push static 5
+add
+push constant 1
+neg
+push constant 0
+call Choice.new 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push static 5
+add
+push constant 0
+push constant 1
+call Choice.new 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 3
+push static 5
+add
+push constant 0
+push constant 1
+neg
+call Choice.new 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+return
+function LCGRandom.setSeed 0
+push argument 0
+pop static 0
+push static 0
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 1
+pop static 0
+label IF_FALSE0
+push constant 219
+pop static 1
+push constant 32749
+pop static 2
+push static 2
+push static 1
+call Math.divide 2
+pop static 3
+push static 2
+push static 1
+call Utils.mod 2
+pop static 4
+push constant 0
+return
+function LCGRandom.rand 1
+push static 1
+push static 0
+push static 3
+call Utils.mod 2
+call Math.multiply 2
+push static 4
+push static 0
+push static 3
+call Math.divide 2
+call Math.multiply 2
+sub
+pop local 0
+push local 0
+push constant 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push static 2
+add
+pop static 0
+goto IF_END0
+label IF_FALSE0
+push local 0
+pop static 0
+label IF_END0
+push static 0
+return
+function LCGRandom.randRange 1
+push static 2
+push argument 1
+push argument 0
+sub
+push constant 1
+add
+call Math.divide 2
+pop local 0
+call LCGRandom.rand 0
+push local 0
+call Math.divide 2
+push argument 0
+add
+return
+function LCGRandom.nextMove 2
+call LCGRandom.rand 0
+push constant 4
+call Math.divide 2
+push constant 4
+call Utils.mod 2
+pop local 0
+push local 0
+push static 5
+add
+pop pointer 1
+push that 0
+pop local 1
+push argument 0
+call EnemyModel.isMovable 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 0
+push local 1
+call Choice.getX 1
+push local 1
+call Choice.getY 1
+push argument 1
+call EnemyModel.move 4
+pop temp 0
+label IF_FALSE0
+push constant 0
+return

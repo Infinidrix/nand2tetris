@@ -6,14 +6,18 @@ class EnemyModel{
     field int hOffset; // the horizontal offset of the game
     field int x, y; // model's top left corner
     field int size; // the side length of model square
-    field int step; // the length that the model can move in one turn 
+    field int step; // the length that the model can move in one turn
+    field int xFacing, yFacing; // the direction that the model will continue moving if no command comes through 
+    field Cell prevCell;
 
-    constructor EnemyModel new(int Ax, int Ay, int Asize, int Astep, int AhOffset){
+
+    constructor EnemyModel new(int Ax, int Ay, int Asize, int Astep, int AhOffset, Map map){
         let hOffset = AhOffset;
         let x = Ax + hOffset;
         let y = Ay;
         let size = Asize;
         let step = Astep;
+        let prevCell = map.getCell(0, 0);
         do draw();
         return this;
     }
@@ -30,9 +34,8 @@ class EnemyModel{
         return;
     }
 
-    /** draws the new location of the model effiecently */ 
+    /** draws the new location of the model */ 
     method void redraw(int xDirection, int yDirection){
-        var int newX, newY;
         do Screen.setColor(false);
         do Screen.drawCircle(x + 4, y + 4, 4);
         let x = x + (step * xDirection);
@@ -42,45 +45,10 @@ class EnemyModel{
         return;
     }
 
-    /** Moves the square up by 2 pixels. */
-   method void moveUp() {
-        do Screen.setColor(false);
-        do Screen.drawRectangle(x, (y + size) - step + 1, x + size, y + size);
-        do Screen.setColor(true);
-        do Screen.drawRectangle(x, y - step, x + size, y);
-        let y = y - step;
-      return;
-   }
-
-   /** Moves the square down by 2 pixels. */
-   method void moveDown() {
-         do Screen.setColor(false);
-         do Screen.drawRectangle(x, y, x + size, y + step - 1);
-         do Screen.setColor(true);
-         do Screen.drawRectangle(x, (y + size), x + size, y + size + step);
-         let y = y + step;
-      return;
-   }
-
-   /** Moves the square left by 2 pixels. */
-   method void moveLeft() {
-         do Screen.setColor(false);
-         do Screen.drawRectangle((x + size) - step + 1, y, x + size, y + size);
-         do Screen.setColor(true);
-         do Screen.drawRectangle(x - step, y, x, y + size);
-         let x = x - step;
-      return;
-   }
-
-   /** Moves the square right by 2 pixels. */
-   method void moveRight() {
-        do Screen.setColor(false);
-        do Screen.drawRectangle(x, y, x + step - 1, y + size);
-        do Screen.setColor(true);
-        do Screen.drawRectangle((x + size) - 1, y, x + size + step, y + size);
-        let x = x + step;
-      return;
-   }
+    method void keepDrawing(){
+        do Screen.drawCircle(x + 4, y + 4, 4);
+        return;
+    }
 
     /** checks if the next move is within bounds and valid 
         for now hardcodes the screensize*/
@@ -104,31 +72,34 @@ class EnemyModel{
     }
 
     /** moves the model in a specific direction */
-    method int move(int xDir, int yDir, Map map){
-        var Array result;
-        var int returnValue;
-        let returnValue = 0;
+    method void move(int xDir, int yDir, Map map){
+        var int row, col;
+        var Cell fromCell, toCell;
         if (isMovable()){
-            let result = map.movePlayer((x - hOffset) / 8, y/8);
-            if (~(result[0] = 0)){
-                do Sys.wait(30);
-                let returnValue = result[0];
-                do Memory.deAlloc(result);
-                return returnValue;
+            let row = (x - hOffset) / 8;
+            let col = (y / 8);
+            do prevCell.setEmpty();
+            if (prevCell.hasPellet()){
+                do Screen.drawPixel(((prevCell.getRow()) * 8) + hOffset + 4, ((prevCell.getCol()) * 8) + 4);
             }
-            let x = (result[1] * 8) + hOffset;
-            let y = result[2] * 8;
-            do Memory.deAlloc(result);
+            let toCell = map.getCell(row, col);
+            do toCell.setEnemy();
+            let prevCell = toCell;
         }
         if ((withinBounds(x + (xDir * step), y + (yDir * step))) &
             (canMove(xDir, yDir, map))){
-            if (xDir = 1) { do moveRight(); }
-            if (xDir = -1) { do moveLeft(); }
-            if (yDir = 1) { do moveDown(); }
-            if (yDir = -1) { do moveUp(); }
+            let xFacing = xDir;
+            let yFacing = yDir;
+            do redraw(xDir, yDir);
+        } else {
+            do keepDrawing();
         }
-        do Sys.wait(30);
-        return returnValue;
+        return;
+    }
+
+    method void keepState(Map map){
+        do move(xFacing, yFacing, map);
+        return;
     }
 
     method int getX(){
@@ -140,11 +111,11 @@ class EnemyModel{
     }
 
     method int getXRemainder(){
-        return (x - hOffset) - (8 * ((x - hOffset) / 8));
+        return Utils.mod(x - hOffset, 8);
     }
 
     method int getYRemainder(){
-        return y - (8 * (y / 8));
+        return Utils.mod(y, 8);
     }
     method boolean isMovable(){
         return ((getXRemainder() = 0) &

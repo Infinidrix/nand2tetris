@@ -1,0 +1,18 @@
+class Choice{
+    field int xMove;
+    field int yMove;
+
+    constructor Choice new(int x, int y){
+        let xMove = x;
+        let yMove = y;
+        return this;
+    }
+
+    method int getX(){
+        return xMove;
+    }
+
+    method int getY(){
+        return yMove;
+    }
+}

@@ -157,4 +157,19 @@ class Row{
         do Memory.deAlloc(this);
         return;
     }
+
+    method int countPellets(){
+        var Cell currCell;
+        var int i, count;
+        let i = 0;
+        let count = 0;
+        while(i < col){
+            let currCell = rowVals[i];
+            if (currCell.hasPellet()){
+                let count = count + 1;
+            }
+            let i = i + 1;
+        }
+        return count;
+    }
 }

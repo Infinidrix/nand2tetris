@@ -4,16 +4,19 @@ class Test {
    field Map map; // the game map
    field int hOffset; // the horizontal offset of the map 
    field int xDirection, yDirection; // the square's current direction
+   field int backSpaces;
 
    /** Constructs a new Square Game. */
    constructor Test new() {
        let hOffset = 255; 
+       let backSpaces = 3;
       // Creates a 8 by 8 pixels model and positions it at the top-left
       // of the game.
       let player = Model.new(8, 8, 8, 2, hOffset);
       let map = Map.new(32, 32, hOffset, 0);
       do LCGRandom.initalize();
       do map.drawMap(); // draw map with hoffset and voffset
+      do drawInstructions();
       let xDirection = 0;  // initial state is no movement
       let yDirection = 0;
       let enemy1 = EnemyModel.new(64, 88, 8, 1, hOffset, map);
@@ -21,6 +24,28 @@ class Test {
       let enemy3 = EnemyModel.new(22 * 8, 88, 8, 1, hOffset, map);
       let enemy4 = EnemyModel.new(22 * 8, 160, 8, 1, hOffset, map);
       return this;
+   }
+
+   method void drawInstructions(){
+       do Output.printString("   Tetris Game");
+       do Output.println();
+       do Output.println();
+       do Output.println();
+       do Output.printString(" Collect all pellets to win");
+       do Output.println();
+       do Output.printString("- Don't bump into the circles");
+       do Output.println();
+       do Output.printString("- You are the black square");
+       do Output.println();
+       do Output.printString("    at the top left");
+       do Output.println();
+       do Output.printString("- Use arrow keys for movement");
+       do Output.println();
+       do Output.println();
+       do Output.println();
+       do Output.printString("   Pellets: ");
+       do Output.printInt(map.getPellets());
+       return;
    }
 
    /** Disposes this game. */
@@ -34,6 +59,7 @@ class Test {
     /** the main game loop */
     method void run() {
         var int key, tempKey, main_key;
+        var int pelletsCount;
         var int gameState, randseed, counter;
         let gameState = 0;
         let key = 0;
@@ -80,13 +106,36 @@ class Test {
                 do enemy4.keepState(map);
             }
             let counter = counter + 1;
+            let pelletsCount = map.getPellets();
+            do backspace(backSpaces);
+            if (pelletsCount > 99){
+                let backSpaces = 3;
+            } else { if (pelletsCount > 9) {
+                let backSpaces = 2;
+            } else {
+                let backSpaces = 1;
+            }}
+            do Output.printInt(pelletsCount);
         }
+        do Output.println();
+        do Output.println();
+        do Output.printString("Game Over!!");
+        do Output.println();
+        do Output.println();
         if (gameState = 1){
             do Output.printString("You have won!!");
         }else {
             do Output.printString("Better luck next time!!");
         }
         do dispose();
+        return;
+    }
+
+    method void backspace(int amount){
+        while (~(amount = 0)){
+            do Output.backSpace();
+            let amount = amount - 1;
+        }
         return;
     }
 }

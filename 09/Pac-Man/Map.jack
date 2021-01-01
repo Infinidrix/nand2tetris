@@ -6,20 +6,26 @@ class Map{
 
     constructor Map new(int rowLength, int colLength, int AhOffset, int AvOffset){
         var int i;
+        var Row currRow;
         let hOffset = AhOffset;
         let vOffset = AvOffset;
         let row = rowLength;
         let col = colLength;
-        let pellets = rowLength * colLength;
         let rows = Array.new(rowLength);
+        let pellets = 0;
         let i = 0;
         while (i < rowLength){
-            let rows[i] = Row.new(i, colLength);
+            let currRow = Row.new(i, colLength);
+            let pellets = pellets + currRow.countPellets();
+            let rows[i] = currRow;
             let i = i + 1;
         }
         return this;
     }
 
+    method int getPellets(){
+        return pellets;
+    }
     /** Draws the map on the screen, while respecting the horizontal
     and vertical offsets */
     method void drawMap(){
@@ -66,9 +72,16 @@ class Map{
         let result[0] = 0;
         let result[1] = row;
         let result[2] = col;
-
+        
         let cell = getCell(row, col);
-        if (cell.hasEnemy()){
+        // do Output.printString(" Heading to row ");
+        // do Output.printInt(row);
+        // do Output.printString(" col ");
+        // do Output.printInt(col);
+        // do Output.printString(" has enemy ");
+        // do Output.printInt(cell.hasEnemy());
+        // do Output.println();
+        if ((cell.hasEnemy())){
             let result[0] = 2;
             return result;
         }

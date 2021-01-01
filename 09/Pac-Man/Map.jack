@@ -41,7 +41,7 @@ class Map{
                     do Screen.drawRectangle((rowI * 8) + hOffset + 1, (colI * 8) + vOffset + 1, (rowI * 8) + hOffset + 8 - 1, (colI * 8) + vOffset + 8 - 1);
                 }
                 if (cell.hasPellet()){
-                    do Screen.drawPixel((rowI * 8) + hOffset + 4, (colI * 8) + vOffset + 4);
+                    do Screen.drawRectangle((rowI * 8) + hOffset + 3, (colI * 8) + vOffset + 3, (rowI * 8) + hOffset + 5, (colI * 8) + vOffset + 5);
                 }
                 let colI = colI + 1; 
             }
@@ -50,6 +50,7 @@ class Map{
         return;
     }
 
+    /** checks if within bounds and not wall in the place they want to move */
     method boolean canMove(int rowNum, int colNum){
         var Cell currCell;
         if ((rowNum < 0) | (rowNum > (row - 1)) | 
@@ -74,13 +75,6 @@ class Map{
         let result[2] = col;
         
         let cell = getCell(row, col);
-        // do Output.printString(" Heading to row ");
-        // do Output.printInt(row);
-        // do Output.printString(" col ");
-        // do Output.printInt(col);
-        // do Output.printString(" has enemy ");
-        // do Output.printInt(cell.hasEnemy());
-        // do Output.println();
         if ((cell.hasEnemy())){
             let result[0] = 2;
             return result;
@@ -107,6 +101,7 @@ class Map{
         return result;
     }
 
+    /** helper method to get cells */
     method Cell getCell(int row, int col){
         var Row currRow;
         var Cell currCell;

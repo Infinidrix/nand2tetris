@@ -80,7 +80,9 @@ class EnemyModel{
             let col = (y / 8);
             do prevCell.setEmpty();
             if (prevCell.hasPellet()){
-                do Screen.drawPixel(((prevCell.getRow()) * 8) + hOffset + 4, ((prevCell.getCol()) * 8) + 4);
+                // redraw the pellet after enemy moves away
+                do Screen.drawRectangle(((prevCell.getRow()) * 8) + hOffset + 3, ((prevCell.getCol()) * 8) + 3, ((prevCell.getRow()) * 8) + hOffset + 5, ((prevCell.getCol()) * 8) + 5);
+
             }
             let toCell = map.getCell(row, col);
             do toCell.setEnemy();
@@ -97,6 +99,7 @@ class EnemyModel{
         return;
     }
 
+    /** keep moving to the previous direction */
     method void keepState(Map map){
         do move(xFacing, yFacing, map);
         return;

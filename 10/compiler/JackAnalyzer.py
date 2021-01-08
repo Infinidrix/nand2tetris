@@ -5,7 +5,7 @@ from CodeParser import CodeParser
 def main(args):
     filenames = []
     if len(args) < 2:
-        args = ["", "C:\\Users\\Biruk Solomon\\Desktop\\IT stuff\\Class\\Interests\\nand2tetris\\projects\\10\\Square\\Main.jack"]
+        args = ["", "C:\\Users\\Biruk Solomon\\Desktop\\IT stuff\\Class\\Interests\\nand2tetris\\projects\\09\\Pac-Man"]
     path = os.path.abspath(args[1])
     if os.path.isdir(path):
         additional = parse_dir(path)
@@ -16,8 +16,7 @@ def main(args):
     for filename in filenames:
         output_filename = filename[:-5] + "_test.xml"
         with open(os.path.join(path,filename)) as input_file, open(os.path.join(path, output_filename), 'w') as output_file:
-            CodeParser.parse_file(input_file, output_file)
-
+            CodeParser(input_file, output_file)
             
 
 def parse_dir(dir_path):

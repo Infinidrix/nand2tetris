@@ -43,16 +43,19 @@ class CodeParser:
 
         curr_token = "" # comment, integerConstant, stringConstant, keyword
         curr_type = ""
-        while value := self.input.read(1):
+        value = self.input.read(1)
+        while value:
             # If we're building a String constant
             if curr_type == "stringConstant" and value != '"':
                 curr_token += value
+                value = self.input.read(1)
                 continue
             elif curr_type == 'block comment':
                 if value == '*':
                     value = self.input.read(1)
                     if value == '/':
                         curr_type = ""
+                value = self.input.read(1)
                 continue
                 
             # If prev concat made a keyword
@@ -122,9 +125,11 @@ class CodeParser:
                     curr_token = value
                 else:
                     curr_token += value
+            value = self.input.read(1)
 
     def parse_file(self):
-        while token := self.next_token():
+        token = self.next_token()
+        while token:
             # determine what to do based on the token
             if token[1] == "class":
                 self.compile_class(0, token)
@@ -142,14 +147,15 @@ class CodeParser:
                 self.compile_do(0, token)
             elif token[1] == "return":
                 self.compile_return(0, token)
+            token = self.next_token()
     def compile_class(self, indent, token):
         space_indent_prev = "  " * indent
         self.output.write(space_indent_prev + "<class>\n")
 
         space_indent = space_indent_prev + "  "
         self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
-
-        while token := self.next_token():
+        token = self.next_token()
+        while token:
             if token[1] == "static" or token[1] == "field":
                 self.compile_class_var_dec(indent + 1, token)
             elif token[1] in ["constructor", "function", "method"]:
@@ -159,6 +165,7 @@ class CodeParser:
                 break
             else:
                 self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
+            token = self.next_token()
         self.output.write(f"{space_indent_prev}</class>\n")
 
     def compile_class_var_dec(self, indent, token):
@@ -167,11 +174,12 @@ class CodeParser:
         
         space_indent = space_indent_prev + "  "
         self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
-
-        while token := self.next_token():
+        token = self.next_token()
+        while token:
             self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
             if token[1] == ";":
                 break
+            token = self.next_token()
         self.output.write(f"{space_indent_prev}</classVarDec>\n")
 
     def compile_subroutine(self, indent, token):
@@ -180,8 +188,8 @@ class CodeParser:
         
         space_indent = space_indent_prev + "  "
         self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
-
-        while token := self.next_token():
+        token = self.next_token()
+        while token:
             if token[1] == "(":
                 self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
                 self.compile_params(indent + 1, token)
@@ -190,6 +198,7 @@ class CodeParser:
                 break
             else:
                 self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
+            token = self.next_token()
 
         self.output.write(f"{space_indent_prev}</subroutineDec>\n")
 
@@ -198,10 +207,12 @@ class CodeParser:
         self.output.write(f"{space_indent_prev}<parameterList>\n")
 
         space_indent = space_indent_prev + "  "
-        while token := self.next_token():
+        token = self.next_token()
+        while token:
             if token[1] == ")":
                 break
             self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
+            token = self.next_token()
         
         self.output.write(f"{space_indent_prev}</parameterList>\n")
         self.output.write(f"{space_indent_prev}<{token[0]}> {token[1]} </{token[0]}>\n")
@@ -213,7 +224,8 @@ class CodeParser:
         space_indent = space_indent_prev + "  "
         self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
         statement_added = False
-        while token := self.next_token():
+        token = self.next_token()
+        while token:
             if token [1] == "}":
                 break
             elif token[1] == "var":
@@ -232,6 +244,7 @@ class CodeParser:
                     self.compile_do(indent + 2, token)
                 elif token[1] == "return":
                     self.compile_return(indent + 2, token)
+            token = self.next_token()
         if statement_added:
             self.output.write(f"{space_indent}</statements>\n")
         
@@ -245,10 +258,12 @@ class CodeParser:
         space_indent = space_indent_prev + "  "
         self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
 
-        while token := self.next_token():
+        token = self.next_token()
+        while token:
             self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
             if token[1] == ";":
                 break
+            token = self.next_token()
         self.output.write(f"{space_indent_prev}</varDec>\n")
 
     def compile_let(self, indent, token):
@@ -257,12 +272,14 @@ class CodeParser:
         
         space_indent = space_indent_prev + "  "
         self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
-        while token := self.next_token():
+        token = self.next_token()
+        while token:
             self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
             if token[1] == "[" or token[1] == "=":
                 self.compile_expression(indent + 1, self.next_token())
             elif token[1] == ";":
                 break
+            token = self.next_token()
         self.output.write(f"{space_indent_prev}</letStatement>\n")
     
     def compile_if(self, indent, token):
@@ -279,7 +296,8 @@ class CodeParser:
         token = self.next_token()
         self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
         self.output.write(f"{space_indent}<statements>\n")
-        while token := self.next_token():
+        token = self.next_token()
+        while token:
             if token[1] == "let":
                 self.compile_let(indent + 2, token)
             elif token[1] == "if":
@@ -294,14 +312,15 @@ class CodeParser:
                 self.output.write(f"{space_indent}</statements>\n")
                 self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
                 break
-        hi = self.peek() # TODO: REMOVE THIS LINE
+            token = self.next_token()
         if self.peek()[1] == "else":
             token = self.next_token()
             self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
             token = self.next_token()
             self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
             self.output.write(f"{space_indent}<statements>\n")
-            while token := self.next_token():
+            token = self.next_token()
+            while token:
                 if token[1] == "let":
                     self.compile_let(indent + 2, token)
                 elif token[1] == "if":
@@ -316,6 +335,7 @@ class CodeParser:
                     self.output.write(f"{space_indent}</statements>\n")
                     self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
                     break
+                token = self.next_token()
         self.output.write(f"{space_indent_prev}</ifStatement>\n")
 
     def compile_while(self, indent, token):
@@ -332,7 +352,8 @@ class CodeParser:
         token = self.next_token()
         self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
         self.output.write(f"{space_indent}<statements>\n")
-        while token := self.next_token():
+        token = self.next_token()
+        while token:
             if token[1] == "let":
                 self.compile_let(indent + 2, token)
             elif token[1] == "if":
@@ -347,6 +368,7 @@ class CodeParser:
                 self.output.write(f"{space_indent}</statements>\n")
                 self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
                 break
+            token = self.next_token()
         self.output.write(f"{space_indent_prev}</whileStatement>\n")
         
     def compile_do(self, indent, token):
@@ -369,33 +391,37 @@ class CodeParser:
         space_indent = space_indent_prev + "  "
         self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
         
-        while token := self.next_token():
+        token = self.next_token()
+        while token:
             if token[1] == ";":
                 self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
                 break
             else:
                 self.compile_expression(indent + 1, token)
+            token = self.next_token()
         
         self.output.write(f"{space_indent_prev}</returnStatement>\n")
 
     def compile_subroutine_call(self, indent, token):
         space_indent = "  " * indent
         self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
-        while token := self.peek():
+        token = self.peek()
+        while token:
             self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
             self.next_token()
             if token[1] == ")":
                 return
             if token[1] == "(":
                 self.compile_expression_list(indent, token)
-            
+            token = self.peek()
 
     def compile_expression_list(self, indent, token):
         space_indent_prev = "  " * indent
         self.output.write(f"{space_indent_prev}<expressionList>\n")
         
         space_indent = space_indent_prev + "  "
-        while token := self.peek():
+        token = self.peek()
+        while token:
             if token[1] == ")":
                 break
             self.next_token()
@@ -403,6 +429,7 @@ class CodeParser:
                 self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
             else:
                 self.compile_expression(indent + 1, token)
+            token = self.peek()
         self.output.write(f"{space_indent_prev}</expressionList>\n")
 
 
@@ -449,8 +476,3 @@ class CodeParser:
             self.output.write(f"{space_indent}<{token[0]}> {token[1]} </{token[0]}>\n")
             self.compile_term(indent + 1, self.next_token())        
         self.output.write(f"{space_indent_prev}</term>\n")
-
-                
-            
-            
-

@@ -18,9 +18,14 @@ class Output {
 
     // Character map for displaying characters
     static Array charMaps; 
+    static int x, y;
 
     /** Initializes the screen, and locates the cursor at the screen's top-left. */
     function void init() {
+        do Output.initMap();
+        let x = 0;
+        let y = 0;
+        return;
     }
 
     // Initializes the character map array
@@ -71,7 +76,7 @@ class Output {
         do Output.create(64,30,51,51,59,59,59,27,3,30,0,0);  // @
         do Output.create(63,30,51,51,24,12,12,0,12,12,0,0);  // ?
 
-        do Output.create(65,0,0,0,0,0,0,0,0,0,0,0);          // A ** TO BE FILLED **
+        do Output.create(65,12,30,51,51,63,51,51,51,51,0,0);          // A ** TO BE FILLED **
         do Output.create(66,31,51,51,51,31,51,51,51,31,0,0); // B
         do Output.create(67,28,54,35,3,3,3,35,54,28,0,0);    // C
         do Output.create(68,15,27,51,51,51,51,51,27,15,0,0); // D
@@ -137,15 +142,15 @@ class Output {
         do Output.create(125,7,12,12,12,56,12,12,12,7,0,0);    // }
         do Output.create(126,38,45,25,0,0,0,0,0,0,0,0);        // ~
 
-	return;
+	    return;
     }
 
     // Creates the character map array of the given character index, using the given values.
     function void create(int index, int a, int b, int c, int d, int e,
                          int f, int g, int h, int i, int j, int k) {
-	var Array map;
+	    var Array map;
 
-	let map = Array.new(11);
+	    let map = Array.new(11);
         let charMaps[index] = map;
 
         let map[0] = a;
@@ -176,28 +181,89 @@ class Output {
     /** Moves the cursor to the j-th column of the i-th row,
      *  and erases the character displayed there. */
     function void moveCursor(int i, int j) {
+        var int x_loc, y_loc;
+        let x_loc = j * 8; let x = j;
+        let y_loc = i * 11; let y = i;
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x_loc, y_loc, x_loc + 7, y_loc + 10);
+        return; 
     }
 
     /** Displays the given character at the cursor location,
      *  and advances the cursor one column forward. */
     function void printChar(char c) {
+        var int i, location, add, rem, prev_bits, div, add;
+        var Array map;
+
+        let map = Output.getMap(c);
+        let i = 0;
+        let div = x / 2; let rem = x - (div * 2);
+        let location = (y * 11 * 32) + div + 16384;
+        while (i < 11){
+            let prev_bits = Memory.peek(location);
+            if (rem = 1){
+                let prev_bits = prev_bits - ((prev_bits / 256) * 256);
+                let add = map[i] * 256;
+            }else {
+                let prev_bits = (prev_bits/256) * 256;
+                let add = map[i];
+            }
+            do Memory.poke(location, prev_bits + add);
+            let i = i + 1;
+            let location = location + 32;
+        }
+        if (x = 63){
+            if (y = 22){
+                do Output.moveCursor(0, 0);
+            }else {
+                do Output.moveCursor(y + 1, 0); 
+            }
+        }else{
+            do Output.moveCursor(y, x + 1);
+        }
+        return;
     }
 
     /** displays the given string starting at the cursor location,
      *  and advances the cursor appropriately. */
     function void printString(String s) {
+        var int i, len;
+        let i = 0; let len = s.length();
+        while (i < len){
+            do Output.printChar(s.charAt(i));
+            let i = i + 1;
+        }
+        return;
     }
 
     /** Displays the given integer starting at the cursor location,
      *  and advances the cursor appropriately. */
     function void printInt(int i) {
+        var String value;
+        let value = String.new(7);
+        do value.setInt(i);
+        do Output.printString(value);
+        do value.dispose();
+        return;
     }
 
     /** Advances the cursor to the beginning of the next line. */
     function void println() {
+        if (y = 11){
+            do Output.moveCursor(0, 0);
+        }else {
+            do Output.moveCursor(y + 1, 0);
+        }
+        return;
     }
 
     /** Moves the cursor one column back. */
     function void backSpace() {
+        if (x = 0){
+            do Output.moveCursor(63, y - 1);
+        }else{
+            do Output.moveCursor(x - 1, y);
+        }
+        return;
     }
 }

@@ -2,5 +2,5 @@
 
 Programming assignments from the course Nand2Tetris
 
-![Pac-man](09\Pac-Man\pac-man.jpg") 
+![Pac-man](pac-man.jpg)
 
